@@ -57,7 +57,7 @@ if (!empty($id_transaction)) {
             echo 'Echec, votre paiement a échoué pour cause : ' . $cp->_cpm_error_message;
             die();
         }
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
         // Une erreur s'est produite
         echo "Erreur :" . $e->getMessage();
     }
