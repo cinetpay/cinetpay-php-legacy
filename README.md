@@ -2,6 +2,13 @@
 
 CinetPay SDK PHP Integration permet d'intégrer rapidement CinetPay à un site en ligne fait avec PHP.
 
+## Installation
+
+Veuillez utiliser composer pour installer CinetPay SDK PHP dans votre projet :
+```shell
+composer require cinetpay/cinetpay-php
+```
+
 ## Génération du Formulaire de Paiement
 
 ```php
