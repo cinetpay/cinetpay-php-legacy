@@ -1,15 +1,15 @@
 {
   "name": "cinetpay/cinetpay-php",
   "description": "easily integrate cinetpay's gateway on your php web site.",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "keywords": [
     "cinetpay",
     "integration",
     "mobile",
     "money"
   ],
-  "time": "2018-05-24",
-  "homepage": "https://github.com/cinetpay/cinetpay-php-sdk",
+  "time": "2020-11-30",
+  "homepage": "https://github.com/cinetpay/cinetpay-php-legacy",
   "license": "MIT",
   "authors": [
     {
