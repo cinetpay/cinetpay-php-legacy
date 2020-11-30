@@ -2,6 +2,13 @@
 
 CinetPay SDK PHP Integration permet d'intégrer rapidement CinetPay à un site en ligne fait avec PHP.
 
+## Installation
+
+Veuillez utiliser composer pour installer CinetPay SDK PHP dans votre projet :
+```shell
+composer require cinetpay/cinetpay-php
+```
+
 ## Génération du Formulaire de Paiement
 
 ```php
@@ -15,7 +22,7 @@ $site_id = "296911"; // Remplacez ce champs par votre SiteID
 $id_transaction = CinetPay::generateTransId(); // Identifiant du Paiement
 $description_du_paiement = sprintf('Mon produit de ref %s', $id_transaction); // Description du Payment
 $date_transaction = date("Y-m-d H:i:s"); // Date Paiement dans votre système
-$montant_a_payer = mt_rand(5, 100); // Montant à Payer : minimun est de 5 francs sur CinetPay
+$montant_a_payer = mt_rand(100, 200); // Montant à Payer : minimun est de 100 francs sur CinetPay
 $identifiant_du_payeur = 'payeur@domaine.ci'; // Mettez ici une information qui vous permettra d'identifier de façon unique le payeur
 $formName = "goCinetPay"; // nom du formulaire CinetPay
 $notify_url = ''; // Lien de notification CallBack CinetPay (IPN Link)
