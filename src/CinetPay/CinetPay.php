@@ -12,7 +12,7 @@
  *
  * @category   CinetPay
  * @package    cinetpay
- * @version    1.9.0
+ * @version    1.9.2
  * @license    MIT
  */
 
