@@ -17,7 +17,7 @@ $site_id = "296911"; //Veuillez entrer votre siteId
 $id_transaction = CinetPay::generateTransId(); // Identifiant du Paiement
 $description_du_paiement = sprintf('Mon produit de ref %s', $id_transaction); // Description du Payment
 $date_transaction = date("Y-m-d H:i:s"); // Date Paiement dans votre système
-$montant_a_payer = mt_rand(5, 100); // Montant à Payer : minimun est de 5 francs sur CinetPay
+$montant_a_payer = 100; // Montant à Payer : minimun est de 5 francs sur CinetPay
 $identifiant_du_payeur = 'payeur@domaine.ci'; // Mettez ici une information qui vous permettra d'identifier de façon unique le payeur
 $formName = "goCinetPay"; // nom du formulaire CinetPay
 $notify_url = ''; // Lien de notification CallBack CinetPay (IPN Link)
@@ -40,6 +40,6 @@ try {
         ->setReturnUrl($return_url)// optional
         ->setCancelUrl($cancel_url)// optional
         ->displayPayButton($formName, $btnType, $btnSize);
-} catch (\Exception $e) {
+} catch (Exception $e) {
     print $e->getMessage();
 }
