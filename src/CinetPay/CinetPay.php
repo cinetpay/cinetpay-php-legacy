@@ -54,7 +54,7 @@ class CinetPay
      * An identifier
      * @var string
      */
-    public $_cfg_cpm_currency = "CFA";
+    public $_cfg_cpm_currency = "XOF";
     /**
      * An identifier
      * @var string
@@ -526,86 +526,6 @@ class CinetPay
     }
 
     /**
-     * @throws \Exception
-     */
-    public function submitCinetPayForm()
-    {
-        $this->getSignature();
-        if (empty($this->_cfg_apikey)) {
-            throw new \Exception("Erreur: ApiKey non definie");
-        }
-        if (empty($this->_cashDeskUri)) {
-            throw new \Exception("Erreur: Url de paiement non definie");
-        }
-        if (empty($this->_cfg_cpm_site_id)) {
-            throw new \Exception("Erreur: Site ID non definie");
-        }
-        if (empty($this->_cfg_cpm_currency)) {
-            throw new \Exception("Erreur: Devise non definie");
-        }
-        if (empty($this->_cfg_cpm_page_action)) {
-            throw new \Exception("Erreur: Page action non definie");
-        }
-        if (empty($this->_cfg_cpm_payment_config)) {
-            throw new \Exception("Erreur: Payment config non definie");
-        }
-        if (empty($this->_cfg_cpm_version)) {
-            throw new \Exception("Erreur: Version non definie");
-        }
-        if (empty($this->_cfg_cpm_language)) {
-            throw new \Exception("Erreur: Langue non definie");
-        }
-        if (empty($this->_cfg_cpm_trans_date)) {
-            throw new \Exception("Erreur: Date de la transaction non definie");
-        }
-        if (empty($this->_cfg_cpm_trans_id)) {
-            throw new \Exception("Erreur: ID de la transaction non definie");
-        }
-        if (empty($this->_cfg_cpm_designation)) {
-            throw new \Exception("Erreur: Designation de la transaction non definie");
-        }
-        if (empty($this->_cfg_cpm_amount)) {
-            throw new \Exception("Erreur: Montant de la transaction non definie");
-        }
-        if (empty($this->_signature)) {
-            throw new \Exception("Erreur: Signature de la transaction non trouvee");
-        }
-
-        $form = "<form id='form_paiement_cinetpay' name='form_paiement_cinetpay' action='" . $this->_cashDeskUri . "' method='post'>";
-        $form .= "<input type='hidden' name='apikey' value='" . $this->_cfg_apikey . "'>";
-        $form .= "<input type='hidden' name='cpm_site_id' value='" . $this->_cfg_cpm_site_id . "'>";
-        $form .= "<input type='hidden' name='cpm_currency' value='" . $this->_cfg_cpm_currency . "'>";
-        $form .= "<input type='hidden' name='cpm_page_action' value='" . $this->_cfg_cpm_page_action . "'>";
-        $form .= "<input type='hidden' name='cpm_payment_config' value='" . $this->_cfg_cpm_payment_config . "'>";
-        $form .= "<input type='hidden' name='cpm_version' value='" . $this->_cfg_cpm_version . "'>";
-        $form .= "<input type='hidden' name='cpm_language' value='" . $this->_cfg_cpm_language . "'>";
-        $form .= "<input type='hidden' name='cpm_trans_date' value='" . $this->_cfg_cpm_trans_date . "'>";
-        $form .= "<input type='hidden' name='cpm_trans_id' value='" . $this->_cfg_cpm_trans_id . "'>";
-        $form .= "<input type='hidden' name='cpm_designation' value='" . $this->_cfg_cpm_designation . "'>";
-        $form .= "<input type='hidden' name='cpm_amount' value='" . $this->_cfg_cpm_amount . "'>";
-        $form .= "<input type='hidden' name='signature' value='" . $this->_signature . "'>";
-        if (!empty($this->_cfg_cel_phone_num) && !empty($this->_cfg_phone_prefixe)) {
-            $form .= "<input type='hidden' name='cel_phone_num' value='" . $this->_cfg_cel_phone_num . "'>";
-            $form .= "<input type='hidden' name='cpm_phone_prefixe' value='" . $this->_cfg_phone_prefixe . "'>";
-        }
-        if (!empty($this->_cfg_cpm_custom)) {
-            $form .= "<input type='hidden' name='cpm_custom' value='" . $this->_cfg_cpm_custom . "'>";
-        }
-        if (!empty($this->_cfg_notify_url)) {
-            $form .= "<input type='hidden' name='notify_url' value='" . $this->_cfg_notify_url . "'>";
-        }
-        if (!empty($this->_cfg_return_url)) {
-            $form .= "<input type='hidden' name='return_url' value='" . $this->_cfg_return_url . "'>";
-        }
-        if (!empty($this->_cfg_cancel_url)) {
-            $form .= "<input type='hidden' name='cancel_url' value='" . $this->_cfg_cancel_url . "'>";
-        }
-        $form .= '<script type="text/javascript">document.forms["form_paiement_cinetpay"].submit();</script>';//We submit data here
-
-        print $form;
-    }
-
-    /**
      * get proper value for your payment's variables
      * @return bool
      * @throws \Exception
@@ -739,6 +659,16 @@ class CinetPay
     public function setDesignation($designation)
     {
         $this->_cfg_cpm_designation = $designation;
+        return $this;
+    }
+
+    /**
+     * @param $currency
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        $this->_cfg_cpm_currency = $currency;
         return $this;
     }
 

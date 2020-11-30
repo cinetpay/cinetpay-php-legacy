@@ -17,12 +17,13 @@ use CinetPay\CinetPay;
 /*
  * Preparation des elements constituant le panier
  */
-$apiKey = "21585943f75164bbc2.38014639"; // Remplacez ce champs par votre APIKEY
-$site_id = "296911"; // Remplacez ce champs par votre SiteID
+$apiKey = "12912847765bc0db748fdd44.40081707"; //Veuillez entrer votre apiKey
+$site_id = "445160"; //Veuillez entrer votre siteId
 $id_transaction = CinetPay::generateTransId(); // Identifiant du Paiement
 $description_du_paiement = sprintf('Mon produit de ref %s', $id_transaction); // Description du Payment
 $date_transaction = date("Y-m-d H:i:s"); // Date Paiement dans votre système
 $montant_a_payer = mt_rand(100, 200); // Montant à Payer : minimun est de 100 francs sur CinetPay
+$devise = 'XOF'; // Montant à Payer : minimun est de 100 francs sur CinetPay
 $identifiant_du_payeur = 'payeur@domaine.ci'; // Mettez ici une information qui vous permettra d'identifier de façon unique le payeur
 $formName = "goCinetPay"; // nom du formulaire CinetPay
 $notify_url = ''; // Lien de notification CallBack CinetPay (IPN Link)
@@ -39,13 +40,14 @@ try {
         ->setDesignation($description_du_paiement)
         ->setTransDate($date_transaction)
         ->setAmount($montant_a_payer)
-        ->setDebug(false)// Valorisé à true, si vous voulez activer le mode debug sur cinetpay afin d'afficher toutes les variables envoyées chez CinetPay
+        ->setCurrency($devise)
+        ->setDebug(true)// Valorisé à true, si vous voulez activer le mode debug sur cinetpay afin d'afficher toutes les variables envoyées chez CinetPay
         ->setCustom($identifiant_du_payeur)// optional
         ->setNotifyUrl($notify_url)// optional
         ->setReturnUrl($return_url)// optional
         ->setCancelUrl($cancel_url)// optional
         ->displayPayButton($formName, $btnType, $btnSize);
-} catch (\Exception $e) {
+} catch (Exception $e) {
     print $e->getMessage();
 }
 ?>
@@ -121,4 +123,4 @@ Ces informations sont disponibles dans votre BackOffice CinetPay.
 
 ## Aller en profondeur
 
-[Page Développeur CinetPay](https://cinetpay.com/index/developpeurs)
+[Page Développeur CinetPay](https://cinetpay.com/developer)
